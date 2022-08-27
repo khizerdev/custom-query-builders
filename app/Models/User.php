@@ -55,4 +55,9 @@ class User extends Authenticatable
     {
         return new UserBuilder($query);
     }
+
+    public function addresses()
+    {
+        return $this->hasMany(Address::class);
+    }
 }

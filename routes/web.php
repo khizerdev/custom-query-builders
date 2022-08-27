@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Address;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -15,8 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+
+    $address = Address::query()->verified()->get();
     
-    $users = User::query()->hasVerifiedEmail()->get();
+    $users = User::query()->hasVerifiedEmail()->hasVerifiedAddress()->get();
 
     dd($users);
 

@@ -10,4 +10,11 @@ class UserBuilder extends Builder
     {
         return $this->whereNotNull('email_verified_at');
     }
+
+    public function hasVerifiedAddress()
+    {
+        return $this->whereHas('addresses' , function($query) {
+            $query->where('verified' , true);
+        });
+    }
 }

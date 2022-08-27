@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Builders\UserBuilder;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -40,8 +41,13 @@ class User extends Authenticatable
     ];
 
 
-    public function scopeHasVerifiedEmail(Builder $query)
+    // public function scopeHasVerifiedEmail(Builder $query)
+    // {
+    //     $query->whereNotNull('email_verified_at');
+    // }
+
+    public function newEloquentBuilder($query)
     {
-        $query->whereNotNull('email_verified_at');
+        return new UserBuilder($query);
     }
 }

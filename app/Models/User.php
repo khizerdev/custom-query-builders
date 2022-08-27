@@ -46,7 +46,12 @@ class User extends Authenticatable
     //     $query->whereNotNull('email_verified_at');
     // }
 
-    public function newEloquentBuilder($query)
+    public static function query(): UserBuilder
+    {
+         return parent::query();
+    }
+
+    public function newEloquentBuilder($query): UserBuilder
     {
         return new UserBuilder($query);
     }
